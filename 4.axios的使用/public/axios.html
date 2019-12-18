@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="./js/axios.js"></script>
 
 	<button id="btn1">获取所有人信息(get请求)</button><br><br>
-	<button id="btn2">根据id获取查询一个人(get请求)</button><br><br>
+	<button id="btn2">根据id获取查询一个人的信息(get请求)</button><br><br>
 	<button id="btn3">添加一个人(post请求)</button><br><br>
 	<button id="btn4">更新一个人(put请求)</button><br><br>
 	<button id="btn5">删除一个人(delete请求)</button><br>
@@ -25,19 +25,102 @@
 		let btn4 = document.getElementById('btn4')
 		let btn5 = document.getElementById('btn5')
 
+		axios.defaults.baseURL = 'http://localhost:3000';
+
 		btn1.onclick = ()=>{
+			//完整版写法
 			axios({
 				method:'GET',
-				url:'http://localhost:3000/get_persons',
+				url:'/get_persons',
 			}).then(
 				response => console.log(response.data),
 				error => console.log(error)
 			)
+			//简单写法
+			/* axios.get('http://localhost:3000/get_persons').then(
+				response => console.log(response),
+				error => console.log(error)
+			) */
 		}
 
-
+		btn2.onclick = ()=>{
+			//完整版写法
+			axios({
+				method:'GET',
+				url:'/get_person_byid',
+				params:{ //携带的query参数！！！！！
+					id:1
+				}
+			}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			)
+			//简单写法
+			/* axios.get('http://localhost:3000/get_person_byid',{params:{id:1}}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			) */
+		}
 		
-	</script>
+		btn3.onclick = ()=>{
+			//完整版写法
+			axios({
+				method:'POST',
+				url:'/add_person',
+				//headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				// data:'name=鹏鹏&age=36'
+				data:{
+					name:'鹏鹏',
+					age:36
+				}
+			}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			)
+			//简单写法
+			/* axios.post('http://localhost:3000/add_person',{name:'浩哥',age:19}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			) */
+		}
+		
+		btn4.onclick = ()=>{
+			//完整版写法
+			axios({
+				method:'PUT',
+				url:'/person',
+				data:{
+					id:1,
+					name:'kobe bryant',
+					age:43
+				}
+			}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			)
+			//简单写法
+			/* axios.put('http://localhost:3000/person',{id:1,name:'浩哥',age:19}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			) */
+		}
+
+		btn5.onclick = ()=>{
+			//完整版写法
+			axios({
+				method:'DELETE',
+				url:'/person/1',
+			}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			)
+			//简单写法
+			/* axios.delete('http://localhost:3000/person/1').then(
+				response => console.log(response.data),
+				error => console.log(error)
+			) */
+		}
+</script>
 
 </body>
 </html>

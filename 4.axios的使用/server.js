@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express()
 app.use(express.urlencoded({extended:true}))
-//app.use(express.json())
+app.use(express.json())
 app.use(express.static(__dirname+'/public'))
 
 //初始化一个用于保存人的数组
@@ -17,8 +17,9 @@ app.get('/get_persons',(req,res)=>{
 })
 
 //根据id获取一个人的信息---- 参数：id ------参数类型：query参数
-app.get('/get_persons_byid',(req,res)=>{
+app.get('/get_person_byid',(req,res)=>{
 	const {id} = req.query
+	console.log(id);
 	npersonArr = personArr.filter((item)=>{
 		return item.id === id*1
 	})
@@ -43,9 +44,9 @@ app.put('/person',(req,res)=>{
 	if(person){
 		person.name = name
 		person.age = age
-		res.send({status:0,data:person})
+		res.send({status:1,data:person})
 	}else{
-		res.send({status:1,data:'更新出错，未找到对应id'})
+		res.send({status:0,data:'更新出错，未找到对应id'})
 	}
 })
 

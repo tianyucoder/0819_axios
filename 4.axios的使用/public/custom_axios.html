@@ -18,7 +18,7 @@
 
 	<script type="text/javascript">
 		/* 
-			1.函数的返回值为promise, 成功的结果为response, 失败的结果为error
+			1.函数的返回值为promise, 成功的结果为xhr.response, 失败的结果为error
 			2.能处理多种类型的请求: GET/POST/PUT/DELETE
 			3.函数的参数为一个配置对象
 				{
@@ -29,6 +29,35 @@
 				}
 			4.响应json数据自动解析为js的对象/数组
 			*/
+
+			function axios (config){
+				let {
+					url,
+					method="GET",
+					params={}, //指定query参数
+					data={} //指定请求体参数，axios默认请求体参数的编码形式为json
+				} = config
+				return new Promise((resolve,reject)=>{
+					//统一调整请求方式的大小写
+					method = method.toUpperCase()
+					//准备query参数
+					let queryStr = '' //用于存储query参数
+					for (let key in params){
+						queryStr += `${key}=${params[key]}&`
+					}
+					if(queryStr) queryStr.substring(0,queryStr.length-1)
+					//
+					
+					const xhr = new XMLHttpRequest()
+					xhr.onreadystatechange = ()=>{
+						//????
+					}
+					xhr.open(method,url)
+					xhr.send()
+
+				})
+			}
+
 	</script>
 
 </body>
