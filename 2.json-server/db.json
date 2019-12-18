@@ -1,0 +1,39 @@
+{
+  "persons": [
+    {
+      "id": 2,
+      "name": "lisi",
+      "age": 19
+    },
+    {
+      "name": "peiqi",
+      "age": "6",
+      "id": 3
+    },
+    {
+      "name": "qiaozhi",
+      "age": "7",
+      "id": 4
+    },
+    {
+      "name": "tongtong",
+      "age": "18",
+      "id": 5
+    }
+  ],
+  "dogs": [
+    {
+      "id": 1,
+      "name": "wc",
+      "age": 4
+    },
+    {
+      "id": 2,
+      "name": "哈士奇",
+      "age": 5
+    }
+  ],
+  "school": {
+    "name": "atguigu"
+  }
+}

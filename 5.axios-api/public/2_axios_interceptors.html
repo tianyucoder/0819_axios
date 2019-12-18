@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="./js/axios.js"></script>
+
+	<button id="btn1">点我</button><br><br>
+
+	 <!-- 
+			axios请求拦截器
+				1.是什么？
+						在真正发请求前执行的一个回调函数
+				2.作用：
+						对请求的配置做一些处理：data、header，界面loading提示
+						对请求进行检查，根据具体的条件决定是否真正发送请求
+
+			axios响应拦截器
+				1.是什么？
+						得到响应之后执行的一个回调函数
+				2.作用：
+						若请求成功，对成功的数据进行处理
+						若请求失败，对失败进行进一步操作
+	-->
+	
+	<script type="text/javascript">
+		let btn1 = document.getElementById('btn1')
+
+		//请求拦截器
+		axios.interceptors.request.use((config)=>{
+			console.log(1);
+			return config;
+		});
+		axios.interceptors.request.use((config)=>{
+			console.log(2);
+			return config;
+		});
+
+		//响应拦截器
+		axios.interceptors.response.use(
+			response =>{return response.data;},
+			error =>{return Promise.reject(error);}
+		);
+		axios.interceptors.response.use(
+			response =>{return response.data;},
+			error =>{return Promise.reject(error);}
+		);
+
+		
+
+		btn1.onclick = ()=>{
+			axios({
+				method: 'get',
+				url: 'http://localhost:3000/get_persons',
+			}).then(
+				value => console.log(value),
+				reason => console.log(reason)
+			)
+		}
+	</script>
+
+</body>
+</html>

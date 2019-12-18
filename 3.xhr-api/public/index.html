@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">点我获取数据</button><br><br>
+
+	<script type="text/javascript">
+
+		let btn = document.getElementById('btn')
+
+		btn.onclick = ()=>{
+			let xhr = new XMLHttpRequest()
+			//xhr.responseType = 'json'
+			//xhr.timeout = 3000
+			xhr.onreadystatechange = ()=>{
+				if(xhr.readyState === 4 && xhr.status === 200){
+					console.log(xhr.response);
+					//console.log(xhr.statusText);
+					//console.log(xhr.getResponseHeader('date'));
+					//console.log(xhr.getAllResponseHeaders());
+				}
+			}
+			//xhr.onerror = (err)=>{console.log('出错了');}
+			xhr.open('get','http://localhost:3000/get_persons')
+			//xhr.setRequestHeader('demo',123)
+			xhr.send()
+		}
+
+	</script>
+
+</body>
+</html>

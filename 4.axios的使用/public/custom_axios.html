@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.small{
+			width: 60px;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn1">获取所有人信息(get请求)</button><br><br>
+	<button id="btn2">根据id获取查询一个人(get请求)</button><br><br>
+	<button id="btn3">添加一个人(post请求)</button><br><br>
+	<button id="btn4">更新一个人(put请求)</button><br><br>
+	<button id="btn5">删除一个人(delete请求)</button><br>
+
+	<script type="text/javascript">
+		/* 
+			1.函数的返回值为promise, 成功的结果为response, 失败的结果为error
+			2.能处理多种类型的请求: GET/POST/PUT/DELETE
+			3.函数的参数为一个配置对象
+				{
+					url: '',   // 请求地址
+					method: '',  // 请求方式GET/POST/PUT/DELETE
+				  params: {},  // query参数
+          data: {}, // 请求体参数 
+				}
+			4.响应json数据自动解析为js的对象/数组
+			*/
+	</script>
+
+</body>
+</html>
