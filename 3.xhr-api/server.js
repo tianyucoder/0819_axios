@@ -13,7 +13,9 @@ let personArr = [
 
 //获取所有人信息
 app.get('/get_persons',(req,res)=>{
-	res.send({status:1,data:personArr})
+	setTimeout(()=>{
+		res.send({status:1,data:personArr})
+	},3000)
 })
 
 app.listen(3000,(err)=>{

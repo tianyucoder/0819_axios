@@ -25,6 +25,17 @@
 		let btn4 = document.getElementById('btn4')
 		let btn5 = document.getElementById('btn5')
 
+		btn1.onclick = ()=>{
+			axios({
+				method:'GET',
+				url:'http://localhost:3000/get_persons',
+			}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			)
+		}
+
+
 		
 	</script>
 
