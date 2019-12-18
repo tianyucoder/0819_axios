@@ -96,7 +96,7 @@
 				}
 			}).then(
 				response => console.log(response.data),
-				error => console.log(error)
+				error => console.log(error.message)
 			)
 			//简单写法
 			/* axios.put('http://localhost:3000/person',{id:1,name:'浩哥',age:19}).then(

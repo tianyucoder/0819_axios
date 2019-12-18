@@ -45,19 +45,125 @@
 					for (let key in params){
 						queryStr += `${key}=${params[key]}&`
 					}
-					if(queryStr) queryStr.substring(0,queryStr.length-1)
-					//
-					
+					if(queryStr) queryStr = queryStr.substring(0,queryStr.length-1)
+					//准备请求体参数
+					data = JSON.stringify(data)
+					//实例化一个xhr对象
 					const xhr = new XMLHttpRequest()
+					//绑定监听
 					xhr.onreadystatechange = ()=>{
-						//????
+						if(xhr.readyState !== 4) return
+						if(xhr.status >= 200 && xhr.status <= 299){
+							const {status,statusText,response} = xhr
+							resolve({status,statusText,data:JSON.parse(response)})
+						}else{
+							reject(new Error('请求失败'))
+						}
 					}
-					xhr.open(method,url)
-					xhr.send()
-
+					if(method === 'GET'){
+						xhr.open(method,url+'?'+queryStr)
+						xhr.send()
+					}else{
+						xhr.open(method,url+'?'+queryStr)
+						xhr.setRequestHeader('content-type','application/json')
+						xhr.send(data)
+					}
 				})
 			}
 
+			btn1.onclick = ()=>{
+				//完整版写法
+				axios({
+					method:'GET',
+					url:'http://localhost:30001/get_persons',
+				}).then(
+					response => console.log(response.data),
+					error => console.log(error)
+				)
+				//简单写法
+				/* axios.get('http://localhost:3000/get_persons').then(
+					response => console.log(response),
+					error => console.log(error)
+				) */
+			}
+
+			btn2.onclick = ()=>{
+				//完整版写法
+				axios({
+					method:'GET',
+					url:'http://localhost:3000/get_person_byid',
+					params:{ //携带的query参数！！！！！
+						id:1
+					}
+				}).then(
+					response => console.log(response.data),
+					error => console.log(error)
+				)
+				//简单写法
+				/* axios.get('http://localhost:3000/get_person_byid',{params:{id:1}}).then(
+					response => console.log(response.data),
+					error => console.log(error)
+				) */
+			}
+			
+			btn3.onclick = ()=>{
+				//完整版写法
+				axios({
+					method:'POST',
+					url:'http://localhost:3000/add_person',
+					//headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+					// data:'name=鹏鹏&age=36'
+					data:{
+						name:'鹏鹏',
+						age:36
+					}
+				}).then(
+					response => console.log(response.data),
+					error => console.log(error)
+				)
+				//简单写法
+				/* axios.post('http://localhost:3000/add_person',{name:'浩哥',age:19}).then(
+					response => console.log(response.data),
+					error => console.log(error)
+				) */
+			}
+			
+			btn4.onclick = ()=>{
+				//完整版写法
+				axios({
+					method:'PUT',
+					url:'http://localhost:3000/person',
+					data:{
+						id:1,
+						name:'kobe bryant',
+						age:43
+					}
+				}).then(
+					response => console.log(response.data),
+					error => console.log(error.message)
+				)
+				//简单写法
+				/* axios.put('http://localhost:3000/person',{id:1,name:'浩哥',age:19}).then(
+					response => console.log(response.data),
+					error => console.log(error)
+				) */
+			}
+
+			btn5.onclick = ()=>{
+			//完整版写法
+			axios({
+				method:'DELETE',
+				url:'http://localhost:3000/person/1',
+			}).then(
+				response => console.log(response.data),
+				error => console.log(error)
+			)
+			//简单写法
+			/* axios.delete('http://localhost:3000/person/1').then(
+				response => console.log(response.data),
+				error => console.log(error)
+			) */
+		}
 	</script>
 
 </body>

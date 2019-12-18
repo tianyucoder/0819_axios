@@ -65,6 +65,9 @@ app.delete('/person/:id',(req,res)=>{
 })
 
 app.listen(3000,(err)=>{
-	if(!err) console.log('测试axios-API页面地址为：http://localhost:3000/axios.html');
+	if(!err) {
+		console.log('测试axios-API页面地址为：http://localhost:3000/axios.html');
+		console.log('测试自己封装的axios页面地址为：http://localhost:3000/custom_axios.html');
+	}
 	else console.log(err);
 })

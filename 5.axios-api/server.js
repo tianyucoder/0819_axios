@@ -32,8 +32,8 @@ app.listen(3000,(err)=>{
 	if(!err) {
 		console.log('练习地址分别为');
 		console.log('http://localhost:3000/1_axios_create.html');
-		console.log('http://localhost:3000/2_axios_.chain.html');
-		console.log('http://localhost:3000/3_axios_cancel.html');
+		console.log('http://localhost:3000/2_axios_interceptors.html');
+		console.log('http://localhost:3000/3_axios_cancel1.html');
 		console.log('http://localhost:3000/4_axios_cancel2.html');
 		console.log('http://localhost:3000/5_axios_cancel3.html');
 	}
